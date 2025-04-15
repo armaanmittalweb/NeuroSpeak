@@ -1,0 +1,30 @@
+# Configuration for inference
+model:
+  model_path: "./models/neurospeak_v1.0"
+  use_quantized: true
+  use_parallel: true
+  num_workers: 4
+
+# Input processing
+input:
+  sampling_rate: 256
+  eeg_channels: 64
+  preprocessing:
+    notch_freq: 60.0
+    highpass_freq: 1.0
+    lowpass_freq: 70.0
+    apply_artifact_removal: true
+
+# Output configuration
+output:
+  sample_rate: 16000
+  mel_bands: 80
+  use_vocoder: true
+  vocoder_type: "waveglow"
+  save_format: "wav"
+
+# Performance options
+performance:
+  batch_size: 1
+  use_gpu: true
+  precision: "float16"  # Options: "float32", "float16", "int8"
